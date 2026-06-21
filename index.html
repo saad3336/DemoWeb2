@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Noor Academy — Where Excellence Is Born</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --plum:#2B2233;
+  --plum2:#3A2E45;
+  --amber:#E8743B;
+  --amber2:#F2925E;
+  --amber-pale:#FCE8DC;
+  --rose:#D4A5A5;
+  --ivory:#FFFFFF;
+  --cream:#FAF8F5;
+  --white:#FFFFFF;
+  --surface:#F4F1ED;
+  --muted:#8A7F8F;
+  --text:#2B2233;
+  --border:#EAE5DE;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;max-width:100%;}
+img{max-width:100%;}
+
+/* ══════════════════════════════
+   HEADER
+══════════════════════════════ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:74px;display:flex;align-items:center;padding:0 4vw;
+  transition:background 0.4s,box-shadow 0.4s,border-color 0.4s;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid transparent;
+}
+header.scrolled{background:rgba(255,255,255,0.96);box-shadow:0 2px 30px rgba(43,34,51,0.08);border-bottom-color:var(--border);}
+
+.h-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;}
+.h-mark{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--amber);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:#fff;
+  position:relative;flex-shrink:0;
+}
+.h-mark::after{
+  content:'';position:absolute;inset:-5px;border-radius:50%;
+  border:1.5px solid rgba(232,116,59,0.3);
+}
+.h-name{font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--plum);letter-spacing:0.01em;line-height:1.15;}
+.h-tag{font-size:10px;color:var(--muted);letter-spacing:0.16em;text-transform:uppercase;}
+
+.h-nav{display:flex;gap:2.5rem;list-style:none;position:absolute;left:50%;transform:translateX(-50%);}
+.h-nav a{font-size:14px;font-weight:500;color:var(--text);text-decoration:none;position:relative;padding-bottom:4px;transition:color 0.2s;}
+.h-nav a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1.5px;background:var(--amber);border-radius:2px;transform:scaleX(0);transition:transform 0.25s ease;}
+.h-nav a:hover{color:var(--amber);}
+.h-nav a:hover::after{transform:scaleX(1);}
+
+.h-right{margin-left:auto;display:flex;align-items:center;gap:16px;}
+.h-phone{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.h-phone i{color:var(--amber);}
+.h-phone:hover{color:var(--plum);}
+.h-apply{
+  background:var(--amber);color:#fff;font-size:13px;font-weight:700;
+  padding:11px 24px;border-radius:99px;text-decoration:none;
+  position:relative;overflow:hidden;transition:transform 0.15s,box-shadow 0.2s;
+}
+.h-apply::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.4) 50%,transparent 70%);transform:translateX(-100%);transition:transform 0.5s;}
+.h-apply:hover::before{transform:translateX(100%);}
+.h-apply:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(232,116,59,0.4);}
+.h-burger{display:none;background:none;border:none;color:var(--plum);font-size:24px;cursor:pointer;padding:8px;margin:-8px;}
+
+/* ══════════════════════════════
+   HERO — the hook
+══════════════════════════════ */
+.hero{
+  min-height:100vh;
+  background:var(--white);
+  display:grid;grid-template-columns:1.05fr 0.95fr;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(232,116,59,0.10) 1.5px,transparent 1.5px);
+  background-size:30px 30px;pointer-events:none;z-index:0;
+}
+/* big ghost number background */
+.hero-ghost{
+  position:absolute;top:50%;left:-40px;transform:translateY(-50%);
+  font-family:'Fraunces',serif;font-weight:700;font-size:38vw;
+  color:rgba(232,116,59,0.045);line-height:1;pointer-events:none;z-index:0;
+  user-select:none;
+}
+
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:150px 4vw 80px 6vw;position:relative;z-index:2;
+}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:1.75rem;opacity:0;animation:fadeUp 0.7s 0.1s ease forwards;}
+.kicker-dot{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:pulseDot 1.8s infinite;}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
+.kicker-text{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);}
+
+.hero-title{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:clamp(40px,5.2vw,72px);
+  color:var(--plum);line-height:1.04;margin-bottom:0.7rem;
+  min-height:2.3em;
+}
+.typewrite{border-right:3px solid var(--amber);padding-right:6px;white-space:nowrap;overflow:hidden;display:inline-block;}
+.hero-title .accent{
+  display:block;color:var(--amber);font-style:italic;font-weight:500;
+  opacity:0;animation:fadeUp 0.6s 2.6s ease forwards;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+.hero-desc{
+  font-size:16px;color:var(--muted);line-height:1.85;max-width:430px;
+  margin-bottom:2.25rem;opacity:0;animation:fadeUp 0.6s 2.9s ease forwards;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.6s 3.1s ease forwards;}
+.btn-amber{
+  background:var(--amber);color:#fff;padding:16px 30px;border-radius:99px;
+  font-weight:700;font-size:15px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:transform 0.15s,box-shadow 0.2s;
+  box-shadow:0 6px 24px rgba(232,116,59,0.3);
+}
+.btn-amber:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 10px 36px rgba(232,116,59,0.45);}
+.btn-line{
+  background:transparent;color:var(--plum);padding:16px 30px;border-radius:99px;
+  border:1.5px solid var(--border);font-weight:500;font-size:15px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:10px;transition:border-color 0.2s,background 0.2s;
+}
+.btn-line:hover{border-color:var(--amber);background:var(--amber-pale);}
+
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:3rem;opacity:0;animation:fadeUp 0.6s 3.3s ease forwards;}
+.pill{display:flex;align-items:center;gap:10px;background:var(--cream);border:1px solid var(--border);border-radius:14px;padding:12px 16px;}
+.pill-icon{font-size:18px;color:var(--amber);}
+.pill-num{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--plum);line-height:1;}
+.pill-lbl{font-size:11px;color:var(--muted);margin-top:1px;}
+
+/* RIGHT — photo that scales in */
+.hero-right{position:relative;overflow:hidden;}
+.hero-photo-frame{
+  position:absolute;inset:24px 24px 24px 0;
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:0 30px 70px rgba(43,34,51,0.18);
+}
+.hero-photo-frame img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:brightness(0.92) saturate(1.1);
+  transform:scale(1.18);
+  animation:photoSettle 1.8s 0.2s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes photoSettle{to{transform:scale(1);}}
+.hero-photo-frame::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(43,34,51,0.06) 0%,transparent 35%,rgba(43,34,51,0.4) 100%);
+}
+.hero-frame-ring{
+  position:absolute;inset:24px 24px 24px 0;
+  border-radius:28px;
+  border:1.5px solid rgba(232,116,59,0.25);
+  pointer-events:none;z-index:3;
+}
+.hero-photo-badge{
+  position:absolute;bottom:64px;left:-20px;z-index:4;
+  background:var(--ivory);border-radius:18px;padding:18px 22px;
+  min-width:190px;box-shadow:0 20px 50px rgba(43,34,51,0.22);
+  border:1px solid var(--border);
+  opacity:0;animation:badgePop 0.6s 2s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes badgePop{from{opacity:0;transform:translateY(20px) scale(0.9);}to{opacity:1;transform:translateY(0) scale(1);}}
+.hpb-label{font-size:11px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;font-weight:600;}
+.hpb-val{font-family:'Fraunces',serif;font-size:38px;font-weight:700;color:var(--amber);line-height:1;}
+.hpb-sub{font-size:12px;color:var(--muted);margin-top:4px;}
+.hpb-bar{height:4px;background:var(--border);border-radius:2px;margin-top:12px;overflow:hidden;}
+.hpb-fill{height:100%;width:98%;background:var(--amber);border-radius:2px;transform-origin:left;transform:scaleX(0);animation:barGrow 1.4s 2.3s ease forwards;}
+@keyframes barGrow{to{transform:scaleX(1);}}
+
+.hero-badge-top{
+  position:absolute;top:56px;left:8px;z-index:4;
+  background:rgba(26,20,34,0.85);backdrop-filter:blur(12px);
+  border:1px solid rgba(232,116,59,0.3);border-radius:14px;padding:12px 16px;
+  display:flex;align-items:center;gap:10px;
+  opacity:0;animation:badgePop 0.6s 2.5s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+.hbt-icon{color:var(--amber);font-size:16px;}
+.hbt-text{font-size:12px;color:#fff;font-weight:600;}
+.hbt-sub{font-size:10px;color:rgba(255,255,255,0.5);}
+
+/* ══════════════════════════════
+   DIAGONAL STAT BANNER (right under fold)
+══════════════════════════════ */
+.stat-banner{
+  background:var(--amber);
+  padding:0;position:relative;overflow:hidden;
+  clip-path:polygon(0 0,100% 0,100% 88%,0 100%);
+  margin-top:-1px;
+}
+.stat-banner-inner{
+  max-width:1200px;margin:0 auto;
+  padding:44px 4vw 64px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2rem;
+}
+.sb-item{text-align:center;color:var(--plum);}
+.sb-num{font-family:'Fraunces',serif;font-size:clamp(32px,3.5vw,46px);font-weight:700;line-height:1;}
+.sb-lbl{font-size:13px;font-weight:600;margin-top:6px;opacity:0.75;}
+
+/* ══════════════════════════════
+   GENERIC SECTION
+══════════════════════════════ */
+section{padding:110px 4vw 100px;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.eyebrow::before{content:'';width:28px;height:2px;background:var(--amber);border-radius:2px;}
+.sec-title{font-family:'Fraunces',serif;font-size:clamp(32px,4vw,50px);font-weight:600;color:var(--plum);line-height:1.15;margin-bottom:1.25rem;}
+.sec-body{font-size:16px;color:var(--muted);line-height:1.85;margin-bottom:2rem;}
+
+/* ══════════════════════════════
+   ABOUT
+══════════════════════════════ */
+.about-sec{background:var(--white);}
+.about-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.about-imgs-layout{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:280px 180px;gap:12px;position:relative;}
+.a-img{border-radius:20px;overflow:hidden;display:block;}
+.a-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;}
+.a-img:hover img{transform:scale(1.05);}
+.a-img.tall{grid-row:span 2;}
+.est-badge{
+  position:absolute;bottom:-24px;right:24px;
+  background:var(--plum);color:var(--amber);padding:16px 24px;border-radius:16px;
+  text-align:center;box-shadow:0 12px 36px rgba(26,20,34,0.3);
+}
+.est-badge .big{font-family:'Fraunces',serif;font-size:38px;font-weight:700;line-height:1;}
+.est-badge .lbl{font-size:11px;opacity:0.7;letter-spacing:0.08em;margin-top:2px;color:#fff;}
+
+.about-checks{display:flex;flex-direction:column;gap:12px;}
+.a-check{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border-radius:14px;border:1px solid var(--border);background:var(--cream);transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;}
+.a-check:hover{border-color:rgba(232,116,59,0.4);box-shadow:0 8px 28px rgba(232,116,59,0.1);transform:translateX(4px);}
+.a-check-icon{width:38px;height:38px;flex-shrink:0;border-radius:11px;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.a-check h4{font-size:14px;font-weight:700;color:var(--plum);margin-bottom:3px;}
+.a-check p{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* ══════════════════════════════
+   STATS BAND #2 (after about)
+══════════════════════════════ */
+.stats-band{background:var(--surface);padding:0 4vw;}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);}
+.stat-box{padding:48px 18px;text-align:center;border-right:1px solid var(--border);position:relative;}
+.stat-box:last-child{border-right:none;}
+.stat-box::after{content:'';position:absolute;bottom:0;left:25%;right:25%;height:2px;background:var(--amber);border-radius:2px;transform:scaleX(0);transition:transform 0.3s;}
+.stat-box:hover::after{transform:scaleX(1);}
+.stat-box .num{font-family:'Fraunces',serif;font-size:50px;font-weight:700;color:var(--plum);line-height:1;}
+.stat-box .unit{font-size:26px;color:var(--amber);}
+.stat-box .lbl{font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:0.04em;}
+.stat-box .ico{font-size:20px;color:var(--amber);margin-bottom:10px;opacity:0.7;}
+
+/* ══════════════════════════════
+   FEATURES
+══════════════════════════════ */
+.feat-sec{background:var(--cream);}
+.feat-top{max-width:1200px;margin:0 auto 3.5rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;}
+.feat-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.f-card{background:var(--white);border:1px solid var(--border);border-radius:22px;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;}
+.f-card:hover{transform:translateY(-6px);box-shadow:0 20px 56px rgba(26,20,34,0.12);border-color:rgba(232,116,59,0.4);}
+.f-img{height:185px;overflow:hidden;position:relative;}
+.f-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;}
+.f-card:hover .f-img img{transform:scale(1.08);}
+.f-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,20,34,0.5),transparent 50%);}
+.f-tag{position:absolute;top:12px;left:12px;background:var(--amber);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.08em;padding:5px 11px;border-radius:99px;text-transform:uppercase;}
+.f-body{padding:1.5rem;}
+.f-icon{width:46px;height:46px;border-radius:14px;background:var(--amber-pale);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem;}
+.f-body h3{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--plum);margin-bottom:8px;}
+.f-body p{font-size:14px;color:var(--muted);line-height:1.7;}
+
+/* ══════════════════════════════
+   GALLERY
+══════════════════════════════ */
+.gal-sec{background:var(--white);}
+.gal-head{max-width:1200px;margin:0 auto 3rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;}
+.gal-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:280px 200px;gap:14px;}
+.g-cell{border-radius:20px;overflow:hidden;position:relative;}
+.g-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;}
+.g-cell:hover img{transform:scale(1.06);}
+.g-cell:first-child{grid-row:span 2;}
+.g-label{position:absolute;bottom:14px;left:14px;background:rgba(26,20,34,0.82);backdrop-filter:blur(8px);border:1px solid rgba(232,116,59,0.3);border-radius:99px;padding:7px 16px;font-size:12px;font-weight:600;color:var(--amber2);display:flex;align-items:center;gap:6px;}
+
+/* ══════════════════════════════
+   TESTIMONIALS
+══════════════════════════════ */
+.testi-sec{background:var(--surface);}
+.testi-head{max-width:1200px;margin:0 auto 3.5rem;text-align:center;}
+.testi-head .sec-title{color:var(--plum);}
+.testi-head .eyebrow{justify-content:center;}
+.testi-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.t-card{background:var(--white);border:1px solid var(--border);border-radius:22px;padding:2rem;transition:border-color 0.25s,box-shadow 0.25s,transform 0.25s;}
+.t-card:hover{box-shadow:0 16px 44px rgba(43,34,51,0.1);border-color:rgba(232,116,59,0.3);transform:translateY(-3px);}
+.t-stars{color:var(--amber);font-size:14px;letter-spacing:2px;margin-bottom:1rem;}
+.t-quote{font-family:'Fraunces',serif;font-size:48px;color:var(--amber-pale);line-height:1;margin-bottom:-8px;}
+.t-text{font-size:14px;color:var(--text);line-height:1.85;margin-bottom:1.5rem;font-style:italic;}
+.t-author{display:flex;align-items:center;gap:12px;}
+.t-av{width:46px;height:46px;border-radius:50%;background:var(--amber-pale);border:2px solid rgba(232,116,59,0.25);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--amber);font-size:15px;}
+.t-name{font-size:14px;font-weight:600;color:var(--plum);}
+.t-role{font-size:12px;color:var(--muted);}
+
+/* ══════════════════════════════
+   ADMISSION
+══════════════════════════════ */
+.adm-sec{background:var(--cream);}
+.adm-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.adm-photo{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/3;}
+.adm-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.adm-photo-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,20,34,0.82) 0%,transparent 55%);}
+.adm-photo-text{position:absolute;bottom:24px;left:24px;right:24px;color:#fff;}
+.adm-photo-text h3{font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:4px;}
+.adm-photo-text p{font-size:13px;color:rgba(255,255,255,0.7);}
+.adm-photo-chip{position:absolute;top:20px;right:20px;background:var(--amber);color:#fff;font-size:11px;font-weight:700;letter-spacing:0.06em;padding:7px 16px;border-radius:99px;text-transform:uppercase;}
+
+.adm-form{display:flex;flex-direction:column;gap:14px;margin-top:2rem;}
+.adm-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.adm-input{width:100%;padding:14px 18px;border:1.5px solid var(--border);border-radius:14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--plum);background:#fff;outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+.adm-input:focus{border-color:var(--amber);box-shadow:0 0 0 4px rgba(232,116,59,0.12);}
+.adm-input::placeholder{color:var(--muted);}
+select.adm-input{cursor:pointer;}
+.adm-submit{
+  background:var(--plum);color:#fff;padding:17px;border-radius:14px;border:none;cursor:pointer;
+  font-size:15px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:transform 0.15s;position:relative;overflow:hidden;
+}
+.adm-submit::before{content:'';position:absolute;inset:0;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;z-index:0;}
+.adm-submit span,.adm-submit i{position:relative;z-index:1;}
+.adm-submit:hover::before{transform:scaleX(1);}
+.adm-submit:hover{transform:translateY(-1px);}
+.adm-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.adm-chip{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--plum);background:#fff;border:1px solid var(--border);border-radius:99px;padding:6px 15px;}
+.adm-chip i{color:var(--amber);}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer{background:#120D18;padding:70px 4vw 30px;}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.f-logo{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+.f-mark{width:38px;height:38px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;color:var(--plum);font-size:16px;}
+.f-brand-name{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:#fff;}
+.f-brand p{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.8;margin-bottom:1.25rem;}
+.f-social{display:flex;gap:8px;}
+.f-social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;transition:background 0.2s,color 0.2s;}
+.f-social a:hover{background:var(--amber);color:#fff;}
+.f-col h4{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:1.25rem;}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.f-col ul a{font-size:13px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
+.f-col ul a:hover{color:var(--amber);}
+.f-contact-item{display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:10px;line-height:1.5;}
+.f-contact-item i{color:var(--amber);flex-shrink:0;margin-top:2px;}
+.footer-bottom{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:12px;color:rgba(255,255,255,0.2);}
+.footer-bottom a{color:var(--amber);text-decoration:none;}
+
+/* ══════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════ */
+.r{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.r.in{opacity:1;transform:none;}
+.r.d1{transition-delay:0.1s;}
+.r.d2{transition-delay:0.2s;}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media(max-width:1000px){
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-ghost{display:none;}
+  .hero-right{height:62vw;min-height:320px;order:-1;}
+  .hero-photo-frame{inset:16px;border-radius:24px;}
+  .hero-frame-ring{inset:16px;border-radius:24px;}
+  .hero-left{padding:100px 6vw 56px;}
+  .hero-title{font-size:clamp(38px,7.5vw,60px);}
+  .h-nav{display:none;}
+  .h-burger{display:block;}
+  .about-wrap,.adm-wrap{grid-template-columns:1fr;gap:3rem;}
+  .about-imgs-layout{grid-template-rows:220px 160px;}
+  .feat-grid{grid-template-columns:1fr 1fr;}
+  .testi-grid{grid-template-columns:1fr 1fr;}
+  .stats-inner{grid-template-columns:repeat(3,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .g-cell{height:220px;}
+  .g-cell:first-child{grid-column:span 2;grid-row:auto;height:280px;}
+  .est-badge{right:50%;transform:translateX(50%);}
+  .stat-banner-inner{grid-template-columns:1fr 1fr;gap:2.5rem 1rem;}
+}
+@media(max-width:640px){
+  section{padding:64px 5vw;}
+  header{padding:0 4vw;height:64px;}
+  .h-mark{width:34px;height:34px;font-size:14px;}
+  .h-name{font-size:17px;}
+  .h-tag{font-size:9px;}
+  .h-phone{display:none;}
+  .h-apply{padding:9px 18px;font-size:12px;}
+
+  .hero-left{padding:88px 6vw 48px;}
+  .hero-kicker{margin-bottom:1.25rem;}
+  .kicker-text{font-size:10px;}
+  .hero-title{font-size:clamp(32px,10vw,44px);line-height:1.1;}
+  .typewrite{white-space:normal;border-right:none;}
+  .hero-desc{font-size:15px;max-width:100%;margin-bottom:2rem;}
+  .hero-actions{flex-direction:column;width:100%;}
+  .btn-amber,.btn-line{width:100%;justify-content:center;padding:16px 24px;}
+  .hero-pills{flex-direction:column;margin-top:2rem;gap:8px;}
+  .pill{width:100%;}
+  .hero-right{height:240px;order:-1;}
+  .hero-photo-frame{inset:12px;border-radius:20px;}
+  .hero-frame-ring{inset:12px;border-radius:20px;}
+  .hero-photo-badge{left:8px;bottom:16px;padding:14px 16px;min-width:150px;}
+  .hpb-val{font-size:28px;}
+  .hero-badge-top{display:none;}
+
+  .stat-banner{clip-path:polygon(0 0,100% 0,100% 94%,0 100%);}
+  .stat-banner-inner{grid-template-columns:1fr 1fr;gap:1.75rem 1rem;padding:32px 5vw 44px;}
+  .sb-num{font-size:30px;}
+  .sb-lbl{font-size:11px;}
+
+  .about-imgs-layout{grid-template-columns:1fr 1fr;grid-template-rows:180px 130px;gap:8px;}
+  .est-badge{padding:12px 18px;bottom:-18px;}
+  .est-badge .big{font-size:28px;}
+  .sec-title{font-size:clamp(26px,7vw,34px);}
+  .sec-body{font-size:14px;}
+
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .stat-box{padding:32px 14px;border-right:none;border-bottom:1px solid var(--border);}
+  .stat-box:nth-child(odd){border-right:1px solid var(--border);}
+  .stat-box .num{font-size:36px;}
+
+  .feat-top{flex-direction:column;align-items:flex-start;gap:1.25rem;}
+  .feat-top .btn-amber{width:100%;justify-content:center;}
+  .feat-grid{grid-template-columns:1fr;}
+
+  .gal-head{flex-direction:column;align-items:flex-start;gap:0.75rem;}
+  .gal-grid{grid-template-columns:1fr;grid-template-rows:auto;gap:10px;}
+  .g-cell{height:220px;}
+  .g-cell:first-child{grid-column:span 1;height:220px;}
+
+  .testi-grid{grid-template-columns:1fr;}
+  .t-card{padding:1.5rem;}
+
+  .adm-row{grid-template-columns:1fr;}
+  .adm-photo{margin-bottom:0.5rem;}
+  .adm-input{font-size:16px;padding:14px 16px;}
+  .adm-submit{padding:16px;font-size:16px;}
+  .adm-chips{gap:6px;}
+  .adm-chip{font-size:11px;padding:5px 12px;}
+
+  .footer-grid{grid-template-columns:1fr;gap:2rem;}
+  .footer-bottom{flex-direction:column;text-align:center;gap:0.5rem;}
+}
+@media(max-width:380px){
+  .hero-title{font-size:30px;}
+  .h-name{font-size:15px;}
+  .h-tag{display:none;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .stat-box .num{font-size:30px;}
+}
+.h-nav a{padding:10px 0;font-size:16px;display:block;}
+@media(max-width:1000px){
+  .h-nav a{border-bottom:1px solid var(--border);}
+  .h-nav a:last-child{border-bottom:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr" class="top">
+  <a href="#" class="h-logo">
+    <div class="h-mark">A</div>
+    <div>
+      <div class="h-name">Al-Noor Academy</div>
+      <div class="h-tag">Est. 1998 · Rawalpindi</div>
+    </div>
+  </a>
+  <ul class="h-nav">
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">Academics</a></li>
+    <li><a href="#gallery">Campus</a></li>
+    <li><a href="#testimonials">Parents</a></li>
+    <li><a href="#admission">Admissions</a></li>
+  </ul>
+  <div class="h-right">
+    <a href="tel:+925145678900" class="h-phone"><i class="fas fa-phone"></i> +92 51 4567 890</a>
+    <a href="#admission" class="h-apply">Apply Now</a>
+    <button class="h-burger" id="burgerBtn"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home" style="padding:0;">
+  <div class="hero-ghost">98%</div>
+  <div class="hero-left">
+    <div class="hero-kicker">
+      <span class="kicker-dot"></span>
+      <span class="kicker-text">Rawalpindi's Premier School</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="typewrite" id="typeTarget"></span>
+      <span class="accent">since 1998</span>
+    </h1>
+    <p class="hero-desc">From Pre-Primary to Matric — a school where modern education meets Islamic character. 25 years of excellence, 1,200 bright futures and counting.</p>
+    <div class="hero-actions">
+      <a href="#admission" class="btn-amber"><i class="fas fa-feather"></i> Apply for Admission</a>
+      <a href="#features" class="btn-line"><i class="fas fa-compass"></i> Explore School</a>
+    </div>
+    <div class="hero-pills">
+      <div class="pill">
+        <span class="pill-icon"><i class="fas fa-award"></i></span>
+        <div><div class="pill-num">98%</div><div class="pill-lbl">Board pass rate</div></div>
+      </div>
+      <div class="pill">
+        <span class="pill-icon"><i class="fas fa-users"></i></span>
+        <div><div class="pill-num">1200+</div><div class="pill-lbl">Students enrolled</div></div>
+      </div>
+      <div class="pill">
+        <span class="pill-icon"><i class="fas fa-graduation-cap"></i></span>
+        <div><div class="pill-num">60+</div><div class="pill-lbl">Expert teachers</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-frame">
+      <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1000&q=85" alt="Al-Noor Academy students"
+        onerror="this.src='https://images.pexels.com/photos/8422197/pexels-photo-8422197.jpeg?w=900'">
+    </div>
+    <div class="hero-frame-ring"></div>
+    <div class="hero-badge-top">
+      <i class="fas fa-circle-check hbt-icon"></i>
+      <div>
+        <div class="hbt-text">Admissions Open</div>
+        <div class="hbt-sub">2025–26 academic year</div>
+      </div>
+    </div>
+    <div class="hero-photo-badge">
+      <div class="hpb-label">Board Result 2024</div>
+      <div class="hpb-val">98<span style="font-size:20px;color:var(--rose)">%</span></div>
+      <div class="hpb-sub">Students passed with distinction</div>
+      <div class="hpb-bar"><div class="hpb-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGONAL STAT BANNER -->
+<div class="stat-banner r">
+  <div class="stat-banner-inner">
+    <div class="sb-item">
+      <div class="sb-num">1200+</div>
+      <div class="sb-lbl">Students Enrolled</div>
+    </div>
+    <div class="sb-item">
+      <div class="sb-num">25+</div>
+      <div class="sb-lbl">Years of Excellence</div>
+    </div>
+    <div class="sb-item">
+      <div class="sb-num">98%</div>
+      <div class="sb-lbl">Board Pass Rate</div>
+    </div>
+    <div class="sb-item">
+      <div class="sb-num">60+</div>
+      <div class="sb-lbl">Expert Teachers</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-sec" id="about">
+  <div class="about-wrap">
+    <div class="r">
+      <div class="about-imgs-layout">
+        <div class="a-img tall"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="School building"></div>
+        <div class="a-img"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&q=80" alt="Classroom"></div>
+        <div class="a-img"><img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&q=80" alt="Students"></div>
+        <div class="est-badge">
+          <div class="big">1998</div>
+          <div class="lbl">Year Founded</div>
+        </div>
+      </div>
+    </div>
+    <div class="r d1">
+      <div class="eyebrow">Our Story</div>
+      <h2 class="sec-title">A Quarter Century of Shaping Young Minds</h2>
+      <p class="sec-body">Since 1998, Al-Noor Academy has stood as Rawalpindi's most trusted institution — blending rigorous academics with the timeless values of Islam to produce students who excel in both worlds.</p>
+      <div class="about-checks">
+        <div class="a-check">
+          <div class="a-check-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div><h4>FBISE & Punjab Board Affiliated</h4><p>Fully recognised. Our Matric students consistently achieve top positions in district results.</p></div>
+        </div>
+        <div class="a-check">
+          <div class="a-check-icon"><i class="fas fa-mosque"></i></div>
+          <div><h4>Islamic Tarbiyat at the Core</h4><p>Daily Quran, Seerat curriculum, and a school culture built on adab, discipline, and service.</p></div>
+        </div>
+        <div class="a-check">
+          <div class="a-check-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <div><h4>B.Ed / M.Ed Qualified Faculty</h4><p>Every teacher is degree-qualified with 5+ years of classroom experience and ongoing training.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-inner r">
+    <div class="stat-box"><div class="ico"><i class="fas fa-users"></i></div><div class="num">1200<span class="unit">+</span></div><div class="lbl">Students Enrolled</div></div>
+    <div class="stat-box"><div class="ico"><i class="fas fa-chalkboard-teacher"></i></div><div class="num">60<span class="unit">+</span></div><div class="lbl">Qualified Teachers</div></div>
+    <div class="stat-box"><div class="ico"><i class="fas fa-award"></i></div><div class="num">98<span class="unit">%</span></div><div class="lbl">Board Pass Rate</div></div>
+    <div class="stat-box"><div class="ico"><i class="fas fa-calendar-alt"></i></div><div class="num">25<span class="unit">+</span></div><div class="lbl">Years of Excellence</div></div>
+    <div class="stat-box"><div class="ico"><i class="fas fa-medal"></i></div><div class="num">15<span class="unit">+</span></div><div class="lbl">Merit Scholarships</div></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="feat-sec" id="features">
+  <div class="feat-top r">
+    <div>
+      <div class="eyebrow">Why Al-Noor</div>
+      <h2 class="sec-title">Built for Every Child's Success</h2>
+    </div>
+    <a href="#admission" class="btn-amber" style="font-size:14px;padding:13px 24px;">Enroll Now <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="feat-grid">
+    <div class="f-card r">
+      <div class="f-img"><img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=600&q=80" alt="Smart classroom"><div class="f-img-overlay"></div><span class="f-tag">Technology</span></div>
+      <div class="f-body"><div class="f-icon"><i class="fas fa-laptop-code"></i></div><h3>Smart Classrooms</h3><p>Projector-equipped rooms, digital learning materials, and a computer lab with 40 stations and high-speed internet.</p></div>
+    </div>
+    <div class="f-card r d1">
+      <div class="f-img"><img src="https://images.unsplash.com/photo-1532094349884-543290c7f671?w=600&q=80" alt="Science lab"><div class="f-img-overlay"></div><span class="f-tag">Sciences</span></div>
+      <div class="f-body"><div class="f-icon"><i class="fas fa-flask"></i></div><h3>Science Labs</h3><p>Dedicated Physics, Chemistry, and Biology labs. Hands-on practicals are mandatory from Grade 6 onwards.</p></div>
+    </div>
+    <div class="f-card r d2">
+      <div class="f-img"><img src="https://images.unsplash.com/photo-1546519638405-a9f6a0a00e8e?w=600&q=80" alt="Sports"><div class="f-img-overlay"></div><span class="f-tag">Sports</span></div>
+      <div class="f-body"><div class="f-icon"><i class="fas fa-futbol"></i></div><h3>Sports & Activities</h3><p>Cricket, football, debate, art, and scouts. We develop character on the field as much as in the classroom.</p></div>
+    </div>
+    <div class="f-card r">
+      <div class="f-img"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Library"><div class="f-img-overlay"></div><span class="f-tag">Library</span></div>
+      <div class="f-body"><div class="f-icon"><i class="fas fa-book-open"></i></div><h3>Extensive Library</h3><p>Over 3,000 books plus digital resources. A quiet reading space open before and after school hours.</p></div>
+    </div>
+    <div class="f-card r d1">
+      <div class="f-img"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80" alt="Parent app"><div class="f-img-overlay"></div><span class="f-tag">Digital</span></div>
+      <div class="f-body"><div class="f-icon"><i class="fas fa-mobile-alt"></i></div><h3>Parent Portal</h3><p>Live attendance, exam results, fee history, and school announcements — all on your phone, anytime.</p></div>
+    </div>
+    <div class="f-card r d2">
+      <div class="f-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Transport"><div class="f-img-overlay"></div><span class="f-tag">Safety</span></div>
+      <div class="f-body"><div class="f-icon"><i class="fas fa-bus"></i></div><h3>GPS Transport</h3><p>GPS-tracked school vans across Rawalpindi. Live location shared with parents via WhatsApp every trip.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gal-sec" id="gallery">
+  <div class="gal-head r">
+    <div><div class="eyebrow">Campus Life</div><h2 class="sec-title">Our School in Pictures</h2></div>
+    <a href="#admission" style="font-size:14px;color:var(--muted);text-decoration:none;font-weight:500;">View all photos <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="gal-grid r">
+    <div class="g-cell"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&q=80" alt="Students in class"><div class="g-label"><i class="fas fa-users"></i> Students Learning</div></div>
+    <div class="g-cell"><img src="https://images.unsplash.com/photo-1532094349884-543290c7f671?w=500&q=80" alt="Lab"><div class="g-label"><i class="fas fa-flask"></i> Science Lab</div></div>
+    <div class="g-cell"><img src="https://images.unsplash.com/photo-1546519638405-a9f6a0a00e8e?w=500&q=80" alt="Sports"><div class="g-label"><i class="fas fa-futbol"></i> Sports Ground</div></div>
+    <div class="g-cell"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=500&q=80" alt="Library"><div class="g-label"><i class="fas fa-book"></i> Library</div></div>
+    <div class="g-cell"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&q=80" alt="Teaching"><div class="g-label"><i class="fas fa-chalkboard-teacher"></i> Our Teachers</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-sec" id="testimonials">
+  <div class="testi-head r">
+    <div class="eyebrow">Parent Voices</div>
+    <h2 class="sec-title">Families Who Trust Al-Noor</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="t-card r">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"</div>
+      <p class="t-text">Mera beta pehle padhai mein kamzor tha. Al-Noor mein aane ke baad uski grades aur confidence dono mein zameen aasmaani farq aa gaya. Yahan ke teachers sachchi mehnat karte hain.</p>
+      <div class="t-author"><div class="t-av">AK</div><div><div class="t-name">Asim Khan</div><div class="t-role">Parent — Grade 8 Student</div></div></div>
+    </div>
+    <div class="t-card r d1">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"</div>
+      <p class="t-text">The parent portal is incredible. Live attendance, exam results, fee receipts — all on my phone. This school understands what modern parents need. Highly recommended.</p>
+      <div class="t-author"><div class="t-av">SF</div><div><div class="t-name">Sadia Farooq</div><div class="t-role">Parent — Grade 5 Student</div></div></div>
+    </div>
+    <div class="t-card r d2">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"</div>
+      <p class="t-text">Islamic tarbiyat ke saath quality education — yahi cheez Al-Noor ko alag karti hai. Mere teeno bachche yahan padhte hain. Humein koi shikayat nahi, sirf shukar hai.</p>
+      <div class="t-author"><div class="t-av">MR</div><div><div class="t-name">Muhammad Rafiq</div><div class="t-role">Parent — 3 Children Enrolled</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSION -->
+<section class="adm-sec" id="admission">
+  <div class="adm-wrap">
+    <div class="r">
+      <div class="adm-photo">
+        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=700&q=80" alt="Students">
+        <div class="adm-photo-over"></div>
+        <div class="adm-photo-chip">Seats Filling Fast</div>
+        <div class="adm-photo-text"><h3>Join 1,200+ students already learning with us</h3><p>Don't miss the 2025–26 academic year</p></div>
+      </div>
+    </div>
+    <div class="r d1">
+      <div class="eyebrow">Admissions Open</div>
+      <h2 class="sec-title">Secure Your Child's Seat Today</h2>
+      <p class="sec-body" style="max-width:100%">Fill in your details — our admissions team will call you back within 24 hours.</p>
+      <div class="adm-form">
+        <div class="adm-row">
+          <input class="adm-input" type="text" placeholder="Parent's full name">
+          <input class="adm-input" type="tel" placeholder="WhatsApp number">
+        </div>
+        <div class="adm-row">
+          <input class="adm-input" type="text" placeholder="Child's name">
+          <select class="adm-input">
+            <option value="" disabled selected>Select class</option>
+            <option>Pre-Primary (KG)</option><option>Grade 1</option><option>Grade 2</option>
+            <option>Grade 3</option><option>Grade 4</option><option>Grade 5</option>
+            <option>Grade 6</option><option>Grade 7</option><option>Grade 8</option>
+            <option>Grade 9</option><option>Grade 10 (Matric)</option>
+          </select>
+        </div>
+        <input class="adm-input" type="text" placeholder="Your area in Rawalpindi">
+        <button class="adm-submit"><span><i class="fas fa-paper-plane"></i> Send Admission Inquiry</span></button>
+      </div>
+      <div class="adm-chips">
+        <div class="adm-chip"><i class="fas fa-check-circle"></i> No registration fee</div>
+        <div class="adm-chip"><i class="fas fa-check-circle"></i> Merit scholarships</div>
+        <div class="adm-chip"><i class="fas fa-check-circle"></i> Reply in 24 hours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="f-brand">
+      <div class="f-logo"><div class="f-mark">A</div><div class="f-brand-name">Al-Noor Academy</div></div>
+      <p>Shaping bright minds and noble characters since 1998. Rawalpindi's most trusted school for academic excellence and Islamic values.</p>
+      <div class="f-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About School</a></li>
+        <li><a href="#features">Academics</a></li>
+        <li><a href="#gallery">Campus Gallery</a></li>
+        <li><a href="#testimonials">Parent Reviews</a></li>
+        <li><a href="#admission">Admissions</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Academics</h4>
+      <ul>
+        <li><a href="#">Pre-Primary</a></li>
+        <li><a href="#">Primary (1–5)</a></li>
+        <li><a href="#">Middle (6–8)</a></li>
+        <li><a href="#">Secondary (9–10)</a></li>
+        <li><a href="#">Fee Structure</a></li>
+        <li><a href="#">Scholarships</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Contact</h4>
+      <div class="f-contact-item"><i class="fas fa-map-marker-alt"></i><span>Satellite Town, Rawalpindi, Punjab</span></div>
+      <div class="f-contact-item"><i class="fas fa-phone"></i><span>+92 51 4567 890</span></div>
+      <div class="f-contact-item"><i class="fab fa-whatsapp"></i><span>0300-1234567</span></div>
+      <div class="f-contact-item"><i class="fas fa-envelope"></i><span>info@alnooracademy.edu.pk</span></div>
+      <div class="f-contact-item"><i class="fas fa-clock"></i><span>Mon–Sat: 7:30am – 2:00pm</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Al-Noor Academy. All rights reserved.</span>
+    <span><a href="#">Privacy Policy</a> · Built for Pakistani schools</span>
+  </div>
+</footer>
+
+<script>
+// Typewriter effect for hero headline
+const phrase = "We Raise Leaders";
+const el = document.getElementById('typeTarget');
+let i = 0;
+function typeChar(){
+  if(i <= phrase.length){
+    el.textContent = phrase.slice(0, i);
+    i++;
+    setTimeout(typeChar, 55);
+  } else {
+    el.style.borderRight = 'none';
+  }
+}
+setTimeout(typeChar, 400);
+
+// Header scroll state
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => {
+  hdr.className = window.scrollY > 20 ? 'scrolled' : 'top';
+});
+
+// Scroll reveal
+const rObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('in');rObs.unobserve(e.target);} });
+},{threshold:0.1});
+document.querySelectorAll('.r').forEach(el => rObs.observe(el));
+
+// Mobile nav
+const burgerBtn = document.getElementById('burgerBtn');
+const hNav = document.querySelector('.h-nav');
+let mobileOpen = false;
+burgerBtn.addEventListener('click', () => {
+  mobileOpen = !mobileOpen;
+  if(mobileOpen){
+    hNav.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:rgba(255,255,255,0.98);padding:1.5rem 5vw;gap:0.5rem;z-index:499;backdrop-filter:blur(16px);border-bottom:1px solid var(--border);box-shadow:0 10px 40px rgba(43,34,51,0.1);';
+    burgerBtn.innerHTML = '<i class="fas fa-times"></i>';
+  } else {
+    hNav.style.cssText = '';
+    burgerBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  }
+});
+document.querySelectorAll('.h-nav a').forEach(a => a.addEventListener('click', () => {
+  mobileOpen = false;
+  hNav.style.cssText = '';
+  burgerBtn.innerHTML = '<i class="fas fa-bars"></i>';
+}));
+</script>
+</body>
+</html>
